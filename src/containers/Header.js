@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+// Without Link, would have to do a full-page refresh to load new views
+import { Link } from 'react-router-dom'
 
 class Header extends React.Component {
     render() {
