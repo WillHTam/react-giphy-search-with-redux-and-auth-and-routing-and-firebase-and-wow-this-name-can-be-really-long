@@ -13,7 +13,6 @@ import Favorites from '../containers/Favorites'
 // Wrapping code in ConnectedRouter and pass it the history object
 // sees the text after '/' and uses it as the path for the respective component
 // exact means that the path contains exactly "/"
-//
 export default class App extends React.Component {
     render() {
         return(
