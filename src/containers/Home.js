@@ -12,10 +12,12 @@ import GifModal from '../components/GifModal'
 import SearchBar from '../components/SearchBar'
 import '../styles/app.css'
 
+// Changed this from 'App' to 'Home' because it is only responsible for the index page and not the entire application
+
 // Where does the gifs object come from? Line33
 // >> Pass requestGifs action creator via onTermChange prop.
     // Thus whenver onInputChange is fired by enter/removing text, action creator fires as well
-class App extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <div>
@@ -68,4 +70,4 @@ function mapDispatchToProps(dispatch) {
 // connect has two parentheses because it has two different function calls
     // connect(mapStateToProps, mapDispatchToProps) returns a function
     // then the second function is called immediately with App passed in as an argument
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
