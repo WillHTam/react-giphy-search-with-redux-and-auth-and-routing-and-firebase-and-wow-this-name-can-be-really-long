@@ -10,7 +10,7 @@ class Header extends React.Component {
             <nav className="navbar navbar-default">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <Link className="navbar-brand" to="/">Wombat Gifs</Link>
+                        <Link className="navbar-brand" to="/">W's Giphy Search</Link>
                     </div>
                     <ul className="nav navbar-nav navbar-right">
                         <li className="nav-item">
