@@ -30,16 +30,21 @@ class Signup extends React.Component {
         console.log(values)
     }
 
+    // touched and error prevents the field from displaying an error field before anything was entered
+    // add a ternary conditional, where if the field has an error, add the bootstrap class of 'has-error'
     renderField = ({ input, label, type, meta: { touched, error } }) => (
-        <fieldset className="form-group">
-          <label>{label}</label>
+        <fieldset className={`form-group ${touched && error ? 'has-error' : ''}`}>
+          <label className="control-label">{label}</label>
           <div>
             <input {...input} placeholder={label} className="form-control" type={type} />
-            {touched && error && <span>{error}</span>}
+            {touched && error && <div className="help-block">{error}</div>}
           </div>
         </fieldset>
     )
 
+    // for the input fields, passing in 'this.renderField' instead of 'input'
+    // do so because renderField checks that all fields have a value, regex checks the email, and
+        // checks that password and passwordConfirmation match
       render() {
         return (
           <div className="container">
@@ -58,6 +63,7 @@ class Signup extends React.Component {
     }
 }
 
+// validate added as an argument here so that form information will be passed to FormReducer
 export default reduxForm({
   form: 'signup',
   validate
