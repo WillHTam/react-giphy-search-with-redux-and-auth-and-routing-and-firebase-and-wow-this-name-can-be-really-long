@@ -6,11 +6,20 @@ import * as Actions from '../actions'
 // simply replace 'a' tags with 'Link' then
 // react-router can switch the components around instead of reloading the page
 class Header extends React.Component {
+    // Since Header doesn't have any child components, can pass in Actions directly in order to make signOutUser()
+        // available on this.props
     handleSignout() {
         this.props.signOutUser()
     }
 
     renderAuthLinks() {
+        // extract out the logic necessary to render links into its own method
+        // authenticated is available from AuthReducer via mapStateToProps
+        // if authenticated==true, return the links to Favs and Sign Out
+        // Return array of <li>'s because otherwise would have to wrap the li's in a single div,
+            // which would not be very clean
+        // Instead, return array of li's, given key prop so that they are unique
+        // Sign Out is a normal a element because it is not routing but just calling handleSignout to fire the signOutUser() action
         if (this.props.authenticated) {
             return [
                 <li className="nav-item" key={1}>

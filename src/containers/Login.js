@@ -3,8 +3,9 @@ import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import * as Actions from '../actions'
 
-// Pass in Actions directly instead of using mapDispatchToProps or bindActionCreatrs to add our actions to props
-    // 
+// for Login&SignUp, pass in Actions directly instead of using mapDispatchToProps or bindActionCreators to add our actions to props
+    // bindActionCreators only needs to be used when passing action creators down as props from a container-fluid
+    // to a component that is not aware of Redux. Since Login & Signup have no child components, can pass them into reduxForm()() directly
 
 const validate = values => {
     const errors = {}
