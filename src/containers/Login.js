@@ -1,5 +1,10 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+import * as Actions from '../actions'
+
+// Pass in Actions directly instead of using mapDispatchToProps or bindActionCreatrs to add our actions to props
+    // 
 
 const validate = values => {
     const errors = {}
@@ -23,6 +28,7 @@ class Login extends React.Component {
         //whatever callback is supplied, in this case handleFormSubmit
     handleFormSubmit = (values) => {
         console.log(values)
+        this.props.signInUser(values)
     }
 
     renderField = ({ input, label, type, meta: {touched, error} }) => (
@@ -67,7 +73,7 @@ class Login extends React.Component {
 // reduxForm()() also connects the form to reduxForm
 // first parentheses takes a config object that has only one required argument
     // a unique name for the form, which will be the key for the store object returned from FormReducer
-export default reduxForm({
-    form:"login",
+export default connect(null, Actions)(reduxForm({
+    form: 'login',
     validate
-})(Login)
+})(Login))

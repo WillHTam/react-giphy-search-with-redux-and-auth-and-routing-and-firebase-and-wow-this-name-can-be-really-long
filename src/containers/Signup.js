@@ -1,5 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+import * as Actions from '../actions'
 
 const validate = values => {
     const errors = {}
@@ -28,10 +30,18 @@ const validate = values => {
 class Signup extends React.Component {
     handleFormSubmit = (values) => {
         console.log(values)
+        this.props.signInUser(values)
     }
 
     // touched and error prevents the field from displaying an error field before anything was entered
-    // add a ternary conditional, where if the field has an error, add the bootstrap class of 'has-error'
+        // add a ternary conditional, where if the field has an error, add the bootstrap class of 'has-error'
+    // the function declaration pulls field.input, field.label, etc and automatically assigns them their own variables input, label, etc.
+        // Creates the benefit of only neeing to write fieldset and label markup once
+    // Line 42
+        // When you wrap a component or stateless function, Field automatically passes it a number of props
+        // These props include name,value, and event handlers like onFocus
+        // By adding these props to the HTML input element with {...input}, you 'destructure'
+        // the value of the input prop and merges in the values provided by the Field component
     renderField = ({ input, label, type, meta: { touched, error } }) => (
         <fieldset className={`form-group ${touched && error ? 'has-error' : ''}`}>
           <label className="control-label">{label}</label>
@@ -64,7 +74,7 @@ class Signup extends React.Component {
 }
 
 // validate added as an argument here so that form information will be passed to FormReducer
-export default reduxForm({
+export default connect(null, Actions)(reduxForm({
   form: 'signup',
   validate
-})(Signup)
+})(Signup))
