@@ -2,7 +2,7 @@ import { createStore, compose, applyMiddleware } from 'redux'
 // ReduxPromise is a middleware.
 // Middleware functions are a layer added between a request and a response that perform some sort of check or transformation on data
 // Used here to resolve a promise. If redux-promise receives a promise as a payload from an action, it will dispatch the resolved value of that promise.
-import ReduxPromise from 'redux-promise'
+import ReduxThunk from 'redux-thunk'
 import rootReducer from '../reducers'
 import createHistory from 'history/createBrowserHistory'
 import { routerMiddleware } from 'react-router-redux'
@@ -20,7 +20,7 @@ export function configureStore(initialState) {
         rootReducer,
         initialState,
         compose (
-            applyMiddleware(ReduxPromise, routerMiddleware(history)),
+            applyMiddleware(ReduxThunk, routerMiddleware(history)),
             window.devToolsExtension ? window.devToolsExtension() : f => f
         )
     )
