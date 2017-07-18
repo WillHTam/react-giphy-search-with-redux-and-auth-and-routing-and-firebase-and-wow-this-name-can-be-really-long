@@ -52,7 +52,7 @@ class App extends React.Component {
 
                     <div>
                         <Route exact path="/" component={ Home } />
-                        <PublicRoute authenticated={this.props.authenticated} path="/signup" component= { Signup } />
+                        <PublicRoute authenticated={this.props.authenticated} path="/signup" component={ Signup } />
                         <PublicRoute authenticated={this.props.authenticated} path="/login" component={ Login } />
                         <PrivateRoute authenticated={this.props.authenticated} path="/favorites" component={ Favorites } />
                     </div>
@@ -62,3 +62,9 @@ class App extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return { authenticated: state.auth.authenticated };
+}
+
+export default connect(mapStateToProps)(App)

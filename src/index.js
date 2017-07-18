@@ -11,7 +11,7 @@ const store = configureStore()
 // Wrap in Provider to connect React to Redux
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+      <App />
   </Provider>,
   document.getElementById('app')
 )

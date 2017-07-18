@@ -42,3 +42,9 @@ export function signInUser() {
         type: SIGN_IN_USER
     }
 }
+
+export function signOutUser() {
+    return {
+        type: SIGN_OUT_USER
+    }
+}
