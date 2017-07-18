@@ -6,6 +6,7 @@ import ReduxPromise from 'redux-promise'
 import rootReducer from '../reducers'
 import createHistory from 'history/createBrowserHistory'
 import { routerMiddleware } from 'react-router-redux'
+import * as Actions from '../actions'
 
 // history determines location from URL in Browser
 // Now the store is aware of the browser location
@@ -31,6 +32,9 @@ export function configureStore(initialState) {
             store.replaceReducer(nextRootReducer)
         })
     }
+
+    // check the authentication state even on reloading the application
+    store.dispatch(Actions.verifyAuth())
 
     return store
 }

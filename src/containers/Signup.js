@@ -30,7 +30,8 @@ const validate = values => {
 class Signup extends React.Component {
     handleFormSubmit = (values) => {
         console.log(values)
-        this.props.signInUser(values)
+        // this.props.signInUser(values)
+        this.props.signUpUser(values)
     }
 
     // touched and error prevents the field from displaying an error field before anything was entered
@@ -52,6 +53,13 @@ class Signup extends React.Component {
         </fieldset>
     )
 
+    renderAuthenticationError() {
+        if (this.props.authenticationError) {
+            return <div className="alert alert-danger">{ this.props.authenticationError }</div>
+        }
+        return <div></div>
+    }
+
     // for the input fields, passing in 'this.renderField' instead of 'input'
     // do so because renderField checks that all fields have a value, regex checks the email, and
         // checks that password and passwordConfirmation match
@@ -60,6 +68,9 @@ class Signup extends React.Component {
           <div className="container">
             <div className="col-md-6 col-md-offset-3">
               <h2 className="text-center">Sign Up</h2>
+
+              { this.renderAuthenticationError() }
+
               <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
                 <Field name="email" type="text" component={this.renderField} label="Email" />
                 <Field name="password" type="password" component={this.renderField} label="Password" />
@@ -73,8 +84,14 @@ class Signup extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        authenticationError: state.auth.error
+    }
+}
+
 // validate added as an argument here so that form information will be passed to FormReducer
-export default connect(null, Actions)(reduxForm({
+export default connect(mapStateToProps, Actions)(reduxForm({
   form: 'signup',
   validate
 })(Signup))

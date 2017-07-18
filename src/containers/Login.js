@@ -42,6 +42,13 @@ class Login extends React.Component {
         </fieldset>
     )
 
+    renderAuthenticationError() {
+        if (this.props.authenticationError) {
+            return <div className="alert alert-danger">{ this.props.authenticationError }</div>
+        }
+        return <div></div>
+    }
+
     // reduxForm()() makes handleSubmit available via this.props
     // handleSubmit is attached to onSubmit to let redux-form know that the user is
         // trying to submit the form so it can intercept and validate it
@@ -50,8 +57,10 @@ class Login extends React.Component {
             <div className="container">
                 <div className="col-md-6 col-md-offset-3">
                   <h2 className="text-center">Log In</h2>
-                  <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
 
+                  { this.renderAuthenticationError }
+
+                  <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
                     <Field name = "email"
                            component={this.renderField}
                            className="form-control"
@@ -71,10 +80,16 @@ class Login extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        authenticationError: state.auth.error
+    }
+}
+
 // reduxForm()() also connects the form to reduxForm
 // first parentheses takes a config object that has only one required argument
     // a unique name for the form, which will be the key for the store object returned from FormReducer
-export default connect(null, Actions)(reduxForm({
+export default connect(mapStateToProps, Actions)(reduxForm({
     form: 'login',
     validate
 })(Login))
