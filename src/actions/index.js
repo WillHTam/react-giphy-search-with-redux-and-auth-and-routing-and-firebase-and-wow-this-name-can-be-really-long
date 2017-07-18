@@ -106,6 +106,7 @@ export function signInUser(credentials) {
     }
 }
 
+// 
 export function signOutUser() {
     return function (dispatch) {
         Firebase.auth().signOut()
