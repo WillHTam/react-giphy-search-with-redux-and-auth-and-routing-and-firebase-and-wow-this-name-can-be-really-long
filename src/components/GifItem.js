@@ -19,7 +19,7 @@ class GifItem extends React.Component {
 
     unfavoriteGif() {
         this.setState({ favorited: false})
-        this.props.onFavoriteSelect(this.props.gif)
+        this.props.onFavoriteDeselect(this.props.gif)
     }
 
     renderFavoriteHeart = () => {

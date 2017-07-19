@@ -20,7 +20,7 @@ const API_URL = 'http://api.giphy.com/v1/gifs/search?q='
 const API_KEY = '&api_key=dc6zaTOxFJmzC'
 
 const config = {
-    apiKey: "AIzaSyA6D3vjEuek-1DHDkJakb1RdayATfnQvbo",
+    // apiKey: "AIzaSyA6D3vjEuek-1DHDkJakb1RdayATfnQvbo",
     authDomain: "w-giphy-search.firebaseapp.com",
     databaseURL: "https://w-giphy-search.firebaseio.com",
     projectId: "w-giphy-search",
